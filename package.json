@@ -1,0 +1,17 @@
+{
+  "name": "generator-psmodule",
+  "version": "0.1.0",
+  "description": "",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "Patryk Spychalski",
+  "license": "ISC",
+  "dependencies": {
+    "yeoman-generator": "^1.0.0",
+    "yosay": "^2.0.2"
+  }
+}
