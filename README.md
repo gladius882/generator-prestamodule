@@ -7,6 +7,12 @@ To use this generator you must install yeomangenerator if you haven't yet.
 
 `npm install -g yo`
 
+### Install with npm
+
+Just type this command:
+
+`npm install -g generator-prestamodule`
+
 ### Install manualy
 
 Download this repo and run this command in root folder:
@@ -14,10 +20,6 @@ Download this repo and run this command in root folder:
 `npm link`
 
 This will make generator visible for yo.
-
-### Install with npm
-
-This package is not available on npm yet. Be patient ;)
 
 ## Commands
 
