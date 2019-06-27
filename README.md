@@ -23,7 +23,7 @@ This will make generator visible for yo.
 
 ## Commands
 
-- **yo psmodule** - generate module's class and create directories with default index.php
-- **yo psmodule:ObjectModel** - generate basic class represantation of database table
-- **yo psmodule:AdminController** - generate basic AdminController page
-- **yo psmodule:FrontController** - generate basic FronController page
+- **yo prestamodule** - generate module's class and create directories with default index.php
+- **yo prestamodule:ObjectModel** - generate basic class represantation of database table
+- **yo prestamodule:AdminController** - generate basic AdminController page
+- **yo prestamodule:FrontController** - generate basic FronController page
