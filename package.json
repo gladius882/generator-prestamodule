@@ -6,7 +6,9 @@
     "generators"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "prestashop",
+    "prestashop-module"
   ],
   "author": "Patryk Spychalski",
   "license": "ISC",
