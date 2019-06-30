@@ -28,24 +28,14 @@ module.exports = class extends Generator
                 store: true
             }
         ]);
+
+        this.answers.year = new Date().getFullYear();
     }
 
     writing() {
-        this.answers.year = new Date().getFullYear();
-
-        if(!this.fs.exists('./classes')) {
-            mkdirp.sync('./classes');
-        }
-
         this.fs.copyTpl(
             this.templatePath('ObjectModel.php'),
-            this.destinationPath('classes/' + this.answers.className + '.php'),
-            this.answers
-        );
-
-        this.fs.copyTpl(
-            this.templatePath('index.php'),
-            this.destinationPath('classes/index.php'),
+            this.destinationPath(this.config.get('root') + '/classes/' + this.answers.className + '.php'),
             this.answers
         );
     }

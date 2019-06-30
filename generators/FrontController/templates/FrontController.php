@@ -13,7 +13,7 @@
  * @license   LICENSE.txt
  */
 
-class <%= moduleName %><%= fileName %>ModuleFrontController extends ModuleFrontController
+class <%= moduleName %><%= className %>ModuleFrontController extends ModuleFrontController
 {
     public function initContent()
     {

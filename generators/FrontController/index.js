@@ -18,14 +18,8 @@ module.exports = class extends Generator
         this.answers = await this.prompt([
             {
                 type: "input",
-                name: "moduleName",
-                message: "Module name:",
-                store: true
-            },
-            {
-                type: "input",
-                name: "fileName",
-                message: "FrontController file name:",
+                name: "className",
+                message: "FrontController name:",
                 store: true
             },
             {
@@ -35,24 +29,15 @@ module.exports = class extends Generator
                 store: true
             }
         ]);
+
+        this.answers.moduleName = this.config.get('moduleName');
+        this.answers.year = new Date().getFullYear();
     }
 
     writing() {
-        this.answers.year = new Date().getFullYear();
-
-        if(!this.fs.exists('./controllers/front')) {
-            mkdirp.sync('./controllers/front');
-        }
-
         this.fs.copyTpl(
             this.templatePath('FrontController.php'),
-            this.destinationPath('controllers/front/' + this.answers.fileName + '.php'),
-            this.answers
-        );
-
-        this.fs.copyTpl(
-            this.templatePath('index.php'),
-            this.destinationPath('controllers/front/index.php'),
+            this.destinationPath(this.config.get('root') + '/controllers/front/' + this.answers.className + '.php'),
             this.answers
         );
     }

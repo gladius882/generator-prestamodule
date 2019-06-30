@@ -31,21 +31,9 @@ module.exports = class extends Generator
     }
 
     writing() {
-        this.answers.year = new Date().getFullYear();
-
-        if(!this.fs.exists('./controllers/admin')) {
-            mkdirp.sync('./controllers/admin');
-        }
-
         this.fs.copyTpl(
             this.templatePath('AdminController.php'),
-            this.destinationPath('controllers/admin/' + this.answers.className + '.php'),
-            this.answers
-        );
-
-        this.fs.copyTpl(
-            this.templatePath('index.php'),
-            this.destinationPath('controllers/admin/index.php'),
+            this.destinationPath(this.config.get('root') + '/controllers/admin/Admin' + this.answers.className + '.php'),
             this.answers
         );
     }

@@ -95,6 +95,7 @@ module.exports = class extends Generator {
         }
 
         this.config.set('root', root);
+        this.config.set('moduleName', this.answers.moduleName);
     }
 
     creatingStructure() {
