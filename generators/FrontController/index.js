@@ -25,6 +25,7 @@ module.exports = class extends Generator
         ]);
 
         this.answers.moduleName = this.config.get('moduleName');
+        this.answers.author = this.config.get('author');
         this.answers.year = new Date().getFullYear();
     }
 

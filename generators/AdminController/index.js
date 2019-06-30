@@ -8,7 +8,6 @@ module.exports = class extends Generator
         super(args, opts);
 
         this.option('className');
-        this.option('author');
     }
 
     async prompting() {
@@ -22,6 +21,9 @@ module.exports = class extends Generator
                 store: true
             }
         ]);
+
+        this.answers.author = this.config.get('author');
+        this.answers.year = new Date().getFullYear();
     }
 
     writing() {
