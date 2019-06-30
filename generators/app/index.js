@@ -2,8 +2,8 @@ var Generator = require('yeoman-generator');
 let yosay = require('yosay');
 let mkdirp = require('mkdirp');
 
-module.exports = class extends Generator
-{
+module.exports = class extends Generator {
+
     constructor(args, opts) {
         super(args, opts);
         this.option('moduleName');
@@ -13,19 +13,20 @@ module.exports = class extends Generator
         this.option('ps_min_version');
         this.option('ps_max_version');
         this.option('author');
+        this.option('subfolder');
 
         this.folders = [
-            './classes',
-            './controllers',
-            './controllers/admin',
-            './controllers/front',
-            './views',
-            './views/css',
-            './views/img',
-            './views/js',
-            './views/templates',
-            './views/templates/admin',
-            './views/templates/front'
+            '/classes',
+            '/controllers',
+            '/controllers/admin',
+            '/controllers/front',
+            '/views',
+            '/views/css',
+            '/views/img',
+            '/views/js',
+            '/views/templates',
+            '/views/templates/admin',
+            '/views/templates/front'
         ];
     }
 
@@ -75,12 +76,33 @@ module.exports = class extends Generator
                 message: "Module author",
                 store: true
             },
+            {
+                type: "input",
+                name: "subfolder",
+                message: "Create folder for module?",
+                default: 'y',
+                store: true
+            }
         ]);
 
         this.answers.year = new Date().getFullYear();
     }
 
+    processingOptions() {
+        if(this.answers.subfolder == 'y') {
+            this.folders.forEach(function(value, key, arr) {
+                arr[key] = '/' + this.answers.moduleName + value;
+            }, this);
+        }
+    }
+
     creatingStructure() {
+        if(this.answers.subfolder == 'y') {
+            if(!this.fs.exists('./'+this.answers.moduleName)) {
+                mkdirp.sync('./'+this.answers.moduleName);
+            }
+        }
+
         this.folders.forEach(element => {
             if(!this.fs.exists(element)) {
                 mkdirp.sync(element);
