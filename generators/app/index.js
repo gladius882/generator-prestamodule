@@ -95,6 +95,13 @@ module.exports = class extends Generator {
                 arr[key] = './' + this.answers.moduleName + value;
             }, this);
         }
+
+        let root = process.cwd();
+        if(this.answers.subfolder == 'y') {
+            root += '/' + this.answers.moduleName;
+        }
+
+        this.config.set('root', root);
     }
 
     creatingStructure() {
