@@ -21,12 +21,6 @@ module.exports = class extends Generator
                 name: "className",
                 message: "FrontController name:",
                 store: true
-            },
-            {
-                type: "input",
-                name: "author",
-                message: "Module author:",
-                store: true
             }
         ]);
 
