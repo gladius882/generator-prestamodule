@@ -16,17 +16,17 @@ module.exports = class extends Generator {
         this.option('subfolder');
 
         this.folders = [
-            './classes',
-            './controllers',
-            './controllers/admin',
-            './controllers/front',
-            './views',
-            './views/css',
-            './views/img',
-            './views/js',
-            './views/templates',
-            './views/templates/admin',
-            './views/templates/front'
+            '/classes',
+            '/controllers',
+            '/controllers/admin',
+            '/controllers/front',
+            '/views',
+            '/views/css',
+            '/views/img',
+            '/views/js',
+            '/views/templates',
+            '/views/templates/admin',
+            '/views/templates/front'
         ];
     }
 
@@ -89,13 +89,6 @@ module.exports = class extends Generator {
     }
 
     processingOptions() {
-        if(this.answers.subfolder == 'y') {
-            this.folders.forEach(function(value, key, arr) {
-                arr[key] = value.replace('./', '/');
-                arr[key] = './' + this.answers.moduleName + value;
-            }, this);
-        }
-
         let root = process.cwd();
         if(this.answers.subfolder == 'y') {
             root += '/' + this.answers.moduleName;
@@ -113,10 +106,10 @@ module.exports = class extends Generator {
 
         this.folders.forEach(element => {
             if(!this.fs.exists(element)) {
-                mkdirp.sync(element);
+                mkdirp.sync(this.config.get('root') + element);
                 this.fs.copyTpl(
                     this.templatePath('index.php'),
-                    this.destinationPath(element + '/index.php'),
+                    this.destinationPath(this.config.get('root') + element + '/index.php'),
                     this.answers
                 );
             }
