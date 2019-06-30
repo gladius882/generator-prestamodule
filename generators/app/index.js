@@ -16,17 +16,17 @@ module.exports = class extends Generator {
         this.option('subfolder');
 
         this.folders = [
-            '/classes',
-            '/controllers',
-            '/controllers/admin',
-            '/controllers/front',
-            '/views',
-            '/views/css',
-            '/views/img',
-            '/views/js',
-            '/views/templates',
-            '/views/templates/admin',
-            '/views/templates/front'
+            './classes',
+            './controllers',
+            './controllers/admin',
+            './controllers/front',
+            './views',
+            './views/css',
+            './views/img',
+            './views/js',
+            './views/templates',
+            './views/templates/admin',
+            './views/templates/front'
         ];
     }
 
@@ -91,7 +91,8 @@ module.exports = class extends Generator {
     processingOptions() {
         if(this.answers.subfolder == 'y') {
             this.folders.forEach(function(value, key, arr) {
-                arr[key] = '/' + this.answers.moduleName + value;
+                arr[key] = value.replace('./', '/');
+                arr[key] = './' + this.answers.moduleName + value;
             }, this);
         }
     }
@@ -116,15 +117,21 @@ module.exports = class extends Generator {
     }
 
     writing() {
+        let prefix = "./";
+        let moduleName = this.answers.moduleName;
+        if(this.answers.subfolder == 'y') {
+            prefix += moduleName + '/';
+        }
+
         this.fs.copyTpl(
             this.templatePath('module.php'),
-            this.destinationPath(this.answers.moduleName.toLowerCase() + '.php'),
+            this.destinationPath(prefix + moduleName.toLowerCase() + '.php'),
             this.answers
         );
 
         this.fs.copyTpl(
             this.templatePath('index.php'),
-            this.destinationPath('index.php'),
+            this.destinationPath(prefix + 'index.php'),
             this.answers
         );
     }
