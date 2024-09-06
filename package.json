@@ -13,7 +13,7 @@
   "author": "Patryk Spychalski",
   "license": "ISC",
   "dependencies": {
-    "yeoman-generator": "^1.0.0",
-    "yosay": "^2.0.2"
+    "yeoman-generator": "^7.1.1",
+    "yosay": "^3.0.0"
   }
 }
